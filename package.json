@@ -7,9 +7,8 @@
 		"ng": "ng",
 		"start": "ng serve",
 		"build": "ng build",
-		"watch": "ng build --watch --configuration development",
-		"test": "ng test",
-		"lint": "ng lint"
+		"android:debug": "cd android && ./gradlew assembleDebug && cd .. && adb install android/app/build/outputs/apk/debug/app-debug.apk",
+		"logcat": "adb logcat --pid=$(adb shell pidof com.ziocain.zmuzik)"
 	},
 	"private": true,
 	"dependencies": {
@@ -21,6 +20,7 @@
 		"@angular/platform-browser": "^16.0.0",
 		"@angular/platform-browser-dynamic": "^16.0.0",
 		"@angular/router": "^16.0.0",
+		"@capacitor/android": "5.3.0",
 		"@capacitor/app": "5.0.6",
 		"@capacitor/core": "5.3.0",
 		"@capacitor/filesystem": "^5.1.3",

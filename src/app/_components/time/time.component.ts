@@ -13,6 +13,7 @@ export class TimeComponent implements OnChanges {
 	constructor() { }
 
 	ngOnChanges(changes: SimpleChanges): void {
+		if(isNaN(this.time)) this.time = 0;
 		const start = this.time < 3600?14:11;
 		this.output = new Date(this.time * 1000).toISOString().slice(start, 19);
 	}

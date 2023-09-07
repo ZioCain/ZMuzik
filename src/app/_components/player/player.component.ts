@@ -12,43 +12,47 @@ import { TimeComponent } from '../time/time.component';
 	imports: [IonicModule, TimeComponent]
 })
 export class PlayerComponent implements OnInit {
-	@ViewChild("audio") audio:ElementRef<HTMLAudioElement>;
+	@ViewChild("audio") audio: ElementRef<HTMLAudioElement>;
 
-	current:Song = new Song();
-	time:{current: number, total: number} = {current:0, total:0};
+	current: Song = new Song();
+	time: { current: number, total: number } = { current: 0, total: 0 };
 	playIcon: string = "play";
+	loading: boolean = true;
 
 	constructor(
-		private player:PlayerService
-	){}
+		private player: PlayerService
+	) { }
 
-	ngOnInit(){}
+	ngOnInit() { }
 
-	Play(){
-		if(this.audio.nativeElement.paused){
+	Play() {
+		if(this.loading) return;
+		if (this.audio.nativeElement.paused) {
 			this.playIcon = "pause";
 			this.audio.nativeElement.play();
-		}else{
+		} else {
 			this.playIcon = "play";
 			this.audio.nativeElement.pause();
 		}
 	}
-	PlayBack(){}
-	PlayForward(){
+	PlayBack(){
+		if(this.loading) return;
+		this.audio.nativeElement.currentTime = 0;
+	}
+	PlayForward() {
 		this.current = this.player.GetNext();
 	}
 
-	SetupData(){
+	SetupData() {
 		this.time.total = this.audio.nativeElement.duration;
 	}
 
-	OnTimeUpdate(){
+	OnTimeUpdate() {
 		this.time.current = this.audio.nativeElement.currentTime;
 		this.time.total = this.audio.nativeElement.duration;
 	}
 
-	private TogglePlayIcon(){
-		this.playIcon = this.playIcon === "play"?"pause":"play";
-	}
+	OnCanPlay(){ this.loading = false; }
+	OnLoadStart(){ this.loading = true; }
 
 }

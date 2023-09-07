@@ -6,7 +6,7 @@ import { Song } from '../_models/song';
 })
 export class PlayerService {
 
-	private sample: string = "http://localhost:8100/assets/sample-12s.mp3";
+	private sample: string = "http://localhost:8100/assets/music/sample-12s.mp3";
 
 	private current: number = 0;
 	private playlist: Song[] = [];

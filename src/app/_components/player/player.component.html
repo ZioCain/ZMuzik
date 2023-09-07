@@ -3,6 +3,9 @@
 	[src]="current.file"
 	(timeupdate)="OnTimeUpdate()"
 	(loadedmetadata)="SetupData()"
+	(loadstart)="OnLoadStart()"
+	(canplay)="OnCanPlay()"
+	(ended)="PlayForward()"
 ></audio>
 <ion-grid>
 	<ion-row>
@@ -17,7 +20,7 @@
 			<ion-button (click)="PlayBack()" fill="none" class="ion-no-padding">
 				<ion-icon slot="icon-only" name="play-back"></ion-icon>
 			</ion-button>
-			<ion-button (click)="Play()" fill="none" class="ion-no-padding">
+			<ion-button [disabled]="loading" (click)="Play()" fill="none" class="ion-no-padding">
 				<ion-icon slot="icon-only" [name]="playIcon"></ion-icon>
 			</ion-button>
 			<ion-button (click)="PlayForward()" fill="none" class="ion-no-padding">

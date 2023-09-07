@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
+import { MusicDBService } from '../_services/musicDB.service';
 
 @Component({
 	selector: 'app-tab2',
@@ -10,6 +11,12 @@ import { IonicModule } from '@ionic/angular';
 })
 export class Tab2Page {
 
-	constructor() { }
+	constructor(
+		private musicDB: MusicDBService
+	) {
+	}
 
+	ScanDirs(){
+		this.musicDB.ScanDirectories();
+	}
 }
