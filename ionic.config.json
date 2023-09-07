@@ -1,0 +1,7 @@
+{
+  "name": "ZMuzik",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
